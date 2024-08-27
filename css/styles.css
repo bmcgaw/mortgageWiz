@@ -1,0 +1,37 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: #e4e4e4;
+}
+
+.main-content {
+  flex: 1;
+}
+
+.footer,
+.navbar {
+  background-color: #333333;
+  color: #f8f9fa;
+}
+
+.devicon-linkedin-plain,
+.devicon-github-original {
+  font-size: 1.6rem;
+  transition: 0.3s ease-in-out;
+}
+
+.devicon-linkedin-plain:hover,
+.devicon-github-original:hover {
+  color: white;
+}
+
+.link-anchor {
+  color: gray;
+  text-decoration: none;
+}
