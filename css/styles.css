@@ -4,19 +4,28 @@ body {
   margin: 0;
 }
 
+nav,
+footer {
+  background-color: #152238 !important;
+}
+
 body {
   display: flex;
   flex-direction: column;
-  background-color: #e4e4e4;
+  background-color: #23395d;
 }
 
 .main-content {
   flex: 1;
 }
 
+h2,
+h3 {
+  color: lightgray;
+}
+
 .footer,
 .navbar {
-  background-color: #333333;
   color: #f8f9fa;
 }
 
@@ -34,4 +43,23 @@ body {
 .link-anchor {
   color: gray;
   text-decoration: none;
+}
+
+.nav-link.active {
+  color: #08f26e !important;
+}
+
+.devi-index {
+  font-size: 3rem;
+  color: #08f26e;
+}
+
+hr {
+  color: #08f26e;
+  height: 4px;
+  width: 75%;
+}
+
+.created-with {
+  color: lightgray;
 }
