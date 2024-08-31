@@ -55,7 +55,31 @@
         </div>
       </div>
     </nav>
-    <main class="main-content"></main>
+    <main class="main-content">
+    <div class="container">
+        <div class="text-center mt-5">
+        <h2 class="mb-2">Enter your loan information below for a month by month amortized payment schedule!</h2>
+        <hr class="w-100 p-5">
+       </div>
+       <div class="col-md-5 d-flex flex-column">
+        <form class="border" action="">
+            <div>
+            <label for="amount">Loan Amount</label>
+            <input name="amount" type="text">
+        </div>
+        <div>
+            <label for="term">Term (years)</label>
+            <input name="term" type="text">
+        </div>
+        <div>
+            <label for="interest">Interest Rate (%)</label>
+            <input name="interest" type="text">
+        </div>
+            <button class="btn btn-primary">Submit</button>
+        </form>
+       </div>
+    </div>
+    </main>
     <footer class="footer text-light text-center py-3">
       <div class="container">
         <p class="mb-0">© 2024 Mortgage Wiz. All rights reserved.</p>
