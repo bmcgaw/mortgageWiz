@@ -1,18 +1,29 @@
+:root {
+  --nightblue: #152238;
+
+  --navyblue: #23395d;
+
+  --brightgreen: #08f26e;
+}
+
 html,
 body {
   height: 100%;
+
   margin: 0;
 }
 
 nav,
 footer {
-  background-color: #152238 !important;
+  background-color: var(--nightblue);
 }
 
 body {
   display: flex;
+
   flex-direction: column;
-  background-color: #23395d;
+
+  background-color: var(--navyblue);
 }
 
 .main-content {
@@ -26,12 +37,13 @@ h3 {
 
 .footer,
 .navbar {
-  color: #f8f9fa;
+  color: lightgray;
 }
 
 .devicon-linkedin-plain,
 .devicon-github-original {
   font-size: 1.6rem;
+
   transition: 0.3s ease-in-out;
 }
 
@@ -42,21 +54,25 @@ h3 {
 
 .link-anchor {
   color: gray;
+
   text-decoration: none;
 }
 
 .nav-link.active {
-  color: #08f26e !important;
+  color: var(--brightgreen) !important;
 }
 
 .devi-index {
   font-size: 3rem;
-  color: #08f26e;
+
+  color: var(--brightgreen);
 }
 
 hr {
-  color: #08f26e;
+  color: var(--brightgreen);
+
   height: 4px;
+
   width: 75%;
 }
 
@@ -66,5 +82,46 @@ hr {
 
 .logo-img {
   max-width: 75%;
+
   max-height: 75%;
+}
+
+.loan-label {
+  font-size: 1.25rem;
+}
+
+.loan-btn,
+.home-btn {
+  transition: 0.3s ease-in-out;
+
+  font-size: 1.1rem;
+}
+
+.loan-btn:hover,
+.home-btn:hover {
+  background-color: var(--brightgreen);
+
+  color: black;
+}
+
+.stats-table {
+  background: var(--navyblue) !important;
+
+  color: white !important;
+}
+
+.tab-link {
+  text-decoration: none;
+
+  color: var(--brightgreen);
+
+  font-size: 1.25rem;
+}
+
+.tab-link:hover {
+  color: lightgray;
+}
+
+.nav-item .nav-link.active {
+  color: var(--navyblue) !important;
 }

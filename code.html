@@ -1,73 +1,599 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
   <head>
+
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Mortgage Wiz</title>
+
     <link
+
       rel="stylesheet"
+
       type="text/css"
+
       href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+
     />
+
     <link
+
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+
       rel="stylesheet"
+
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+
       crossorigin="anonymous"
+
     />
+
+    <link rel="stylesheet" href="/css/prism.css"/>
+
     <link rel="stylesheet" href="/css/styles.css" />
+
   </head>
+
   <body>
+
     <nav
+
       class="navbar navbar-expand-lg border-bottom border-body"
+
       data-bs-theme="dark"
+
     >
+
       <div class="container-fluid">
+
         <a class="navbar-brand" href="index.html">Mortgage Wiz</a>
+
         <button
+
           class="navbar-toggler"
+
           type="button"
+
           data-bs-toggle="collapse"
+
           data-bs-target="#navbarNavAltMarkup"
+
           aria-controls="navbarNavAltMarkup"
+
           aria-expanded="false"
+
           aria-label="Toggle navigation"
+
         >
+
           <span class="navbar-toggler-icon"></span>
+
         </button>
+
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
           <div class="navbar-nav">
+
             <a class="nav-link m-2" href="index.html"
+
               >Home</a
+
             >
+
             <a class="nav-link m-2" href="app.html">The App</a>
+
             <a class="nav-link m-2 active" aria-current="page" href="code.html">The Code</a>
+
+            <a class="nav-link m-2" href="https://github.com/bmcgaw/mortgageWiz">The Repo</a>
+
             <a class="nav-link m-2 mb-2" href="https://brmdev.netlify.app">Portfolio</a>
+
           </div>
+
           <div class="ms-auto">
+
           <a href=https://www.linkedin.com/in/brian-mcgaw class="link-anchor"
+
           ><i class="devicon-linkedin-plain mx-2"></i
+
         ></a>
+
         <a href=https://www.github.com/bmcgaw class="link-anchor">
+
           <i class="devicon-github-original mx-2"></i>
+
         </a>
+
       </div>
+
         </div>
+
       </div>
+
     </nav>
+
     <main class="main-content">
-        
-    </main>
-    <footer class="footer text-light text-center py-3">
+
       <div class="container">
+
+      <h2 class="mt-5 text-center">Click each tab to see the code!</h2>
+
+      <hr class="w-100 mx-auto">
+
+    </div>
+
+      <div class="container mt-4">
+
+        <ul class="nav nav-tabs d-flex justify-content-center" id="myTab" role="tablist">
+
+            <li class="nav-item" role="presentation">
+
+                <a class="nav-link active tab-link" id="tab1-tab" data-bs-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true">Handle Input</a>
+
+            </li>
+
+            <li class="nav-item" role="presentation">
+
+                <a class="nav-link tab-link" id="tab2-tab" data-bs-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false">Calculate Payment</a>
+
+            </li>
+
+            <li class="nav-item" role="presentation">
+
+                <a class="nav-link tab-link" id="tab3-tab" data-bs-toggle="tab" href="#tab3" role="tab" aria-controls="tab3" aria-selected="false">Build Schedule</a>
+
+            </li>
+
+            <li class="nav-item" role="presentation">
+
+                <a class="nav-link tab-link" id="tab4-tab" data-bs-toggle="tab" href="#tab4" role="tab" aria-controls="tab4" aria-selected="false">Display Data</a>
+
+            </li>
+
+            <li class="nav-item" role="presentation">
+
+                <a class="nav-link tab-link" id="tab5-tab" data-bs-toggle="tab" href="#tab5" role="tab" aria-controls="tab5" aria-selected="false">Update Stats</a>
+
+            </li>
+
+        </ul>
+
+ 
+
+        <div class="tab-content d-flex justify-content-center mb-4" id="myTabContent">
+
+            <div class="tab-pane fade show active text-center w-100" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+
+                <p class="text-white mt-3">The getLoanInput() method takes in the user's loan information and saves the term, amount, and interest rate in an
+
+                  object by accessing the input fields by their id's and saving their values to variables. It then calls the getPaymentAmount() method and passes in the object.
+
+                </p>
+
+                <pre><code class="language-javascript">
+
+                  function getLoanInput() {
+
+                    let loanObj = {};
+
+               
+
+                    const loanTerm = parseInt(document.getElementById("loanTerm").value);
+
+                    const loanAmount = parseInt(document.getElementById("loanAmount").value);
+
+                    const interestRate = parseFloat(document.getElementById("interestRate").value);
+
+               
+
+                    loanObj["term"] = loanTerm;
+
+                    loanObj["amount"] = loanAmount;
+
+                    loanObj["interest"] = interestRate;
+
+               
+
+                    getPaymentAmount(loanObj);  
+
+                }
+
+                </code></pre>
+
+            </div>
+
+            <div class="tab-pane fade text-center w-100" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+
+              <p class="text-white mt-3">The getPaymentAmount() method takes in an object and uses it's values to calculate the monthly payment,
+
+                monthly interest, and the total number of months needed to complete paying off the loan.
+
+                The monthly payment is updated in the user's view and a new object is created to pass to buildPaymentSchedule() for processing.
+
+              </p>
+
+                <pre><code class="language-javascript">
+
+                  function getPaymentAmount(obj) {
+
+                    const loanAmount = obj.amount;
+
+                    const interestRate = (obj.interest / 100) / 12;
+
+                    const totalMonths = obj.term * 12;
+
+                    const monthlyPayment = (loanAmount * interestRate) / (1 - Math.pow(1 + interestRate, -totalMonths));
+
+               
+
+                    document.getElementById("monthlyPayment").innerHTML = monthlyPayment.toLocaleString(
+
+                        undefined, {
+
+                            minimumFractionDigits: 2,
+
+                            maximumFractionDigits: 2,
+
+                            style: 'currency',
+
+                            currency: 'USD',
+
+                        });
+
+               
+
+                    let loanData =
+
+                     {
+
+                        monthlyPayment: monthlyPayment,
+
+                        interestRate: interestRate,
+
+                        term: totalMonths,
+
+                        loanBalance: loanAmount
+
+                     }
+
+                    buildPaymentSchedule(loanData);
+
+                }
+
+                </code></pre>
+
+            </div>
+
+            <div class="tab-pane fade text-center w-100" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
+
+              <p class="text-white mt-3">The buildPaymentSchedule() method takes in an object of loan data and uses it to create an amortized breakdown of the payment schedule. Using the total number of months, a new object is added for each monthly payment and the interest,
+
+                principal, loan balance, total interest, and total principal are calculated. This object is then saved to the paymentArray which saves every monthly payment and it's data for
+
+                the entirety of the loan. Finally, displayLoanTotals() and displayLoanBreakdown() are called, and both are passed the paymentArray.
+
+              </p>
+
+                <pre><code class="language-javascript">
+
+                  function buildPaymentSchedule(obj) {
+
+                    let paymentArray = [];
+
+               
+
+                    let loanTerm = obj.term;
+
+                    let payment = obj.monthlyPayment;
+
+                    let rate = obj.interestRate;
+
+                    let totalLoan = obj.loanBalance;
+
+                    let totalInterest = 0;
+
+                    let totalPrincipal = 0;
+
+                    let loanBalance = totalLoan;
+
+                    let principalPayment = 0;
+
+                    let monthlyInterest = 0;
+
+                    let month = 0;
+
+               
+
+                    for (let i = 0; i < loanTerm; i++)
+
+                    {
+
+                        month++;
+
+                        monthlyInterest = rate * loanBalance;
+
+                        principalPayment = payment - monthlyInterest;
+
+                        loanBalance -= principalPayment;
+
+                        totalInterest += monthlyInterest;
+
+                        totalPrincipal += principalPayment;
+
+               
+
+                        paymentArray.push({month,monthlyInterest,principalPayment,loanBalance,totalInterest,totalPrincipal,totalLoan,rate,payment});
+
+                    }
+
+               
+
+                    displayLoanTotals(paymentArray);
+
+                    displayLoanBreakdown(paymentArray);
+
+                }
+
+                </code></pre>
+
+            </div>
+
+            <div class="tab-pane fade text-center w-100" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
+
+              <p class="text-white mt-3">The displayLoanTotals() method takes in the paymentArray from buildPaymentSchedule() and uses it to populate
+
+                the loan totals table. Using the last object in paymentArray (which holds the total interest and total principal for the loan)
+
+                we get the total interest, total principal, and total cost of the loan. This data is displayed to the user under the monthly payment.
+
+              </p>
+
+                <pre><code class="language-javascript">
+
+                  function displayLoanTotals(arr) {
+
+ 
+
+                    let totalPrincipal = arr[arr.length - 1].totalPrincipal;
+
+                    let totalInterest = arr[arr.length - 1].totalInterest;
+
+                    let totalCost = arr[arr.length - 1].totalPrincipal + arr[arr.length - 1].totalInterest;;
+
+               
+
+                    document.getElementById("totalPrincipal").innerHTML = totalPrincipal.toLocaleString(
+
+                        undefined, {
+
+                            minimumFractionDigits: 2,
+
+                            maximumFractionDigits: 2,
+
+                            style: 'currency',
+
+                            currency: 'USD',
+
+                        });
+
+               
+
+                    document.getElementById("totalInterest").innerHTML = totalInterest.toLocaleString(
+
+                        undefined, {
+
+                            minimumFractionDigits: 2,
+
+                            maximumFractionDigits: 2,
+
+                            style: 'currency',
+
+                            currency: 'USD',
+
+                        });
+
+               
+
+                    document.getElementById("totalCost").innerHTML = totalCost.toLocaleString(
+
+                        undefined, {
+
+                            minimumFractionDigits: 2,
+
+                            maximumFractionDigits: 2,
+
+                            style: 'currency',
+
+                            currency: 'USD',
+
+                        });
+
+               
+
+                }
+
+                </code></pre>
+
+            </div>
+
+            <div class="tab-pane fade text-center w-100" id="tab5" role="tabpanel" aria-labelledby="tab5-tab">
+
+              <p class="text-white mt-3">The displayLoanBreakdown() method also takes in the paymentArray from the buildPaymentSchedule() method.
+
+                We grab the html loan data template by id which is going to be used repeatedly to add a new row of data. We then loop through the paymentArray and for each month we
+
+                grab the necessary data and populate the data row with it. After that month's payment has been processed the new data row is appended to the payment breakdown table.
+
+              </p>
+
+                <pre><code class="language-javascript">
+
+                  function displayLoanBreakdown(arr) {
+
+                    const loanSchedule = document.getElementById("loanScheduleBreakdown");
+
+                    const template = document.getElementById("loan-data-template");
+
+               
+
+                    loanSchedule.innerHTML = "";
+
+               
+
+                    for (let i = 0; i < arr.length; i++)
+
+                    {
+
+                        const dataRow = document.importNode(template.content,true);
+
+               
+
+                        dataRow.getElementById("month").textContent = (arr[i].month);
+
+                        dataRow.getElementById("payment").textContent = (arr[i].payment).toLocaleString(
+
+                            undefined, {
+
+                                minimumFractionDigits: 2,
+
+                                maximumFractionDigits: 2,
+
+                                style: 'currency',
+
+                                currency: 'USD'
+
+                            }
+
+                        );
+
+                        dataRow.getElementById("principal").textContent = (arr[i].principalPayment).toLocaleString(
+
+                            undefined, {
+
+                                minimumFractionDigits: 2,
+
+                                maximumFractionDigits: 2,
+
+                                style: 'currency',
+
+                                currency: 'USD',
+
+                            }
+
+                        );
+
+                        dataRow.getElementById("interest").textContent = (arr[i].monthlyInterest).toLocaleString(
+
+                            undefined, {
+
+                                minimumFractionDigits: 2,
+
+                                maximumFractionDigits: 2,
+
+                                style: 'currency',
+
+                                currency: 'USD',
+
+                            }
+
+                        );
+
+                        dataRow.getElementById("total_interest").textContent = (arr[i].totalInterest).toLocaleString(
+
+                            undefined, {
+
+                                minimumFractionDigits: 2,
+
+                                maximumFractionDigits: 2,
+
+                                style: 'currency',
+
+                                currency: 'USD',
+
+                            }
+
+                        );
+
+                        dataRow.getElementById("balance").textContent = (Math.abs(arr[i].loanBalance)).toLocaleString(
+
+                            undefined, {
+
+                                minimumFractionDigits: 2,
+
+                                maximumFractionDigits: 2,
+
+                                style: 'currency',
+
+                                currency: 'USD',
+
+               
+
+                            }
+
+                        );
+
+                        loanSchedule.appendChild(dataRow);
+
+                    }
+
+               
+
+                }
+
+                </code></pre>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    </main>
+
+    <footer class="footer text-light text-center py-3">
+
+      <div class="container">
+
         <p class="mb-0">© 2024 Mortgage Wiz. All rights reserved.</p>
+
       </div>
+
     </footer>
+
     <script
+
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+
       crossorigin="anonymous"
+
     ></script>
+
     <script src="/js/main.js"></script>
+
+    <script src="js/prism.js"></script>
+
+    <script>
+
+      Prism.plugins.NormalizeWhitespace.setDefaults({
+
+        "remove-trailing": true,
+
+        "remove-indent": true,
+
+        "left-trim": true,
+
+        "right-trim": true,
+
+      });
+
+      </script>
+
   </body>
+
 </html>
